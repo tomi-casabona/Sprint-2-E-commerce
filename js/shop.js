@@ -110,17 +110,23 @@ function buy(id) {
   console.log(calculateTotal())
 }
 // Exercise 2
+//vaciar array del carrito
 function cleanCart() {
     cart = [];
-    let tbody = document.getElementById("cart_list");    
-// Eliminar todos los elementos del tbody
+    cleanModal();
+};
+
+// Eliminar todos los elementos del modal del carito
+function cleanModal(){
+  let tbody = document.getElementById("cart_list");    
 while (tbody.firstChild) {
   tbody.removeChild(tbody.firstChild);
 }
 // Eliminar el total
-let total=document.getElementById("total_price");
+let total=document.getElementById("total");
 total.innerHTML = 0;
 }
+
 // Exercise 3
 function calculateTotal() {
     applyPromotionsCart(); // aplico los descuentos del ejericio 4
@@ -128,7 +134,7 @@ function calculateTotal() {
 let totalPrice = 0;
 cart.forEach( product => {
     product.subtotal = (product.price * product.quantity);
-    totalPrice += product.subtotalWithDiscount ? product.subtotalWithDiscount : product.subtotal;
+    totalPrice += product.subtotalWithDiscount > 0 ? product.subtotalWithDiscount : product.subtotal;
 })
 return totalPrice;
 }
@@ -145,6 +151,8 @@ cart.forEach((product) => {
             (product.price - (
                 (product.price * product.offer.percent)
                  / 100)) * product.quantity);
+    }else {
+      product.subtotalWithDiscount = 0;
     }
 } 
 })
@@ -165,6 +173,7 @@ cart.forEach((product) => {
     <th scope="row">${product.name}</th>        
     <td>${product.price}</td>
     <td>${product.quantity}</td>
+    <td><buttom class="btn btn-primary btn-3" onclick="remove(${product.id})">Remove</buttom></td>
     <td>${product.subtotalWithDiscount ? product.subtotalWithDiscount.toFixed(2) : product.subtotal.toFixed(2)}</td>
   `;
 
@@ -172,15 +181,37 @@ cart.forEach((product) => {
   tbody.appendChild(row);
   })
   // Agregamos el total de la compra a la tabla
-  let total = document.getElementById("total_price");
-  total.innerHTML = calculateTotal().toFixed(2);
+  let total = document.getElementById("total");
+  total.innerHTML = calculateTotal().toFixed(2) == null ? 0 : calculateTotal().toFixed(2)  ;
 }
 
 // ** Nivell II **
 
 // Exercise 7
-function removeFromCart(id) {}
+//remover items, restando de a una unidad hasta tener 0 unidades ahi se elimina del array cart el producto
+
+
+function remove(id){
+  //busco por id el producto y le resto una unidad
+  let p = cart.find(p => p.id == id);
+  if ( p.quantity > 1){
+    p.quantity = p.quantity - 1;
+}else{  
+    if(p.quantity === 1){
+      //si hay solo una se elimina el producto
+ cart = cart.filter(p => p.id !== id);
+    }
+  }; 
+  //limpio el modal
+  cleanModal();
+ // re-renderizo el modal
+  open_modal();
+
+};
 
 function open_modal() {
+  calculateTotal();
+  console.log("calculado: " + calculateTotal());
+  console.log(cart);  
   printCart();
 }
