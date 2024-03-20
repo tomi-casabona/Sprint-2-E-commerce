@@ -106,8 +106,17 @@ function buy(id) {
       }
     });
   }
-  console.log(cart)
-  console.log(calculateTotal())
+ cartNumber();
+}
+
+// for incremet or decrement cart number indicator
+function cartNumber(){
+  let count = document.getElementById("count_product");
+  let c = 0;
+  cart.forEach( (p) => c += p.quantity); 
+  count.innerHTML = c;
+  console.log(c);
+  
 }
 // Exercise 2
 //vaciar array del carrito
@@ -119,12 +128,15 @@ function cleanCart() {
 // Eliminar todos los elementos del modal del carito
 function cleanModal(){
   let tbody = document.getElementById("cart_list");    
-while (tbody.firstChild) {
+while (tbody.firstChild) {  
   tbody.removeChild(tbody.firstChild);
 }
 // Eliminar el total
 let total=document.getElementById("total");
 total.innerHTML = 0;
+//actrualizar el cartNumber
+cartNumber();
+
 }
 
 // Exercise 3
@@ -206,12 +218,11 @@ function remove(id){
   cleanModal();
  // re-renderizo el modal
   open_modal();
-
+//actrualizar el cartNumber
+cartNumber();
 };
 
 function open_modal() {
-  calculateTotal();
-  console.log("calculado: " + calculateTotal());
-  console.log(cart);  
-  printCart();
+  calculateTotal();  
+  printCart();  
 }

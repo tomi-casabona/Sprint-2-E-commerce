@@ -3,7 +3,6 @@ function validate() {
   // Obtener los campos del formulario
 
   const formulario = document.getElementById("form");
-  console.log(formulario);
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
   });
@@ -63,3 +62,5 @@ function validate() {
     : "block";
   errorPhone.style.display = phoneRegex.test(fPhone.value) ? "none" : "block";
 }
+  
+
