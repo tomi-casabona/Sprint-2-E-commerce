@@ -106,82 +106,83 @@ function buy(id) {
       }
     });
   }
- cartNumber();
+  cartNumber();
 }
 
 // for incremet or decrement cart number indicator
-function cartNumber(){
+function cartNumber() {
   let count = document.getElementById("count_product");
   let c = 0;
-  cart.forEach( (p) => c += p.quantity); 
+  cart.forEach((p) => c += p.quantity);
   count.innerHTML = c;
   console.log(c);
-  
+
 }
 // Exercise 2
 //vaciar array del carrito
 function cleanCart() {
-    cart = [];
-    cleanModal();
+  cart = [];
+  cleanModal();
 };
 
 // Eliminar todos los elementos del modal del carito
-function cleanModal(){
-  let tbody = document.getElementById("cart_list");    
-while (tbody.firstChild) {  
-  tbody.removeChild(tbody.firstChild);
-}
-// Eliminar el total
-let total=document.getElementById("total");
-total.innerHTML = 0;
-//actrualizar el cartNumber
-cartNumber();
+function cleanModal() {
+  let tbody = document.getElementById("cart_list");
+  while (tbody.firstChild) {
+    tbody.removeChild(tbody.firstChild);
+  }
+  // Eliminar el total
+  let total = document.getElementById("total");
+  total.innerHTML = 0;
+  //actrualizar el cartNumber
+  cartNumber();
 
 }
 
 // Exercise 3
 function calculateTotal() {
-    applyPromotionsCart(); // aplico los descuentos del ejericio 4
-    // Calculate total price of the cart using the "cartList" array
-let totalPrice = 0;
-cart.forEach( product => {
+  applyPromotionsCart(); // aplico los descuentos del ejericio 4
+  // Calculate total price of the cart using the "cartList" array
+  let totalPrice = 0;
+  cart.forEach(product => {
     product.subtotal = (product.price * product.quantity);
     totalPrice += product.subtotalWithDiscount > 0 ? product.subtotalWithDiscount : product.subtotal;
-})
-return totalPrice;
+  })
+  return totalPrice;
 }
 
 // Exercise 4
 function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
-//   Si l'usuari/ària compra 3 o més ampolles d'oli, el preu del producte es rebaixa un 20%.
-// Quan es compren 10 o més productes per a fer pastissos, el preu del producte es rebaixa un 30%.
-cart.forEach((product) => {
-    if(product.offer){
-    if (product.quantity >= product.offer.number){
+  //   Si l'usuari/ària compra 3 o més ampolles d'oli, el preu del producte es rebaixa un 20%.
+  // Quan es compren 10 o més productes per a fer pastissos, el preu del producte es rebaixa un 30%.
+  cart.forEach((product) => {
+    if (product.offer) {
+      if (product.quantity >= product.offer.number) {
         product.subtotalWithDiscount = (
-            (product.price - (
-                (product.price * product.offer.percent)
-                 / 100)) * product.quantity);
-    }else {
-      product.subtotalWithDiscount = 0;
+          (product.price - (
+            (product.price * product.offer.percent)
+            / 100)) * product.quantity);
+      } else {
+        product.subtotalWithDiscount = 0;
+      }
     }
-} 
-})
-return cart;}
+  })
+  return cart;
+}
 
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom				
 
-cart.forEach((product) => {
-    
+  cart.forEach((product) => {
+
     // Creamos una nueva fila
     let row = document.createElement("tr");
     // Referenciamos la tabla
-  let tbody = document.getElementById("cart_list");
-  // Insertamos las celdas con los datos del producto
-  row.innerHTML = `
+    let tbody = document.getElementById("cart_list");
+    // Insertamos las celdas con los datos del producto
+    row.innerHTML = `
     <th scope="row">${product.name}</th>        
     <td>${product.price}</td>
     <td>${product.quantity}</td>
@@ -189,12 +190,12 @@ cart.forEach((product) => {
     <td>${product.subtotalWithDiscount ? product.subtotalWithDiscount.toFixed(2) : product.subtotal.toFixed(2)}</td>
   `;
 
-  // Agregamos la fila al cuerpo de la tabla
-  tbody.appendChild(row);
+    // Agregamos la fila al cuerpo de la tabla
+    tbody.appendChild(row);
   })
   // Agregamos el total de la compra a la tabla
   let total = document.getElementById("total");
-  total.innerHTML = calculateTotal().toFixed(2) == null ? 0 : calculateTotal().toFixed(2)  ;
+  total.innerHTML = calculateTotal().toFixed(2) == null ? 0 : calculateTotal().toFixed(2);
 }
 
 // ** Nivell II **
@@ -203,26 +204,26 @@ cart.forEach((product) => {
 //remover items, restando de a una unidad hasta tener 0 unidades ahi se elimina del array cart el producto
 
 
-function remove(id){
+function remove(id) {
   //busco por id el producto y le resto una unidad
   let p = cart.find(p => p.id == id);
-  if ( p.quantity > 1){
+  if (p.quantity > 1) {
     p.quantity = p.quantity - 1;
-}else{  
-    if(p.quantity === 1){
+  } else {
+    if (p.quantity === 1) {
       //si hay solo una se elimina el producto
- cart = cart.filter(p => p.id !== id);
+      cart = cart.filter(p => p.id !== id);
     }
-  }; 
+  };
   //limpio el modal
   cleanModal();
- // re-renderizo el modal
+  // re-renderizo el modal
   open_modal();
-//actrualizar el cartNumber
-cartNumber();
+  //actrualizar el cartNumber
+  cartNumber();
 };
 
 function open_modal() {
-  calculateTotal();  
-  printCart();  
+  calculateTotal();
+  printCart();
 }

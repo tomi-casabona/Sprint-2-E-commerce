@@ -1,32 +1,47 @@
-body{
-    background-image:url("https://c7.alamy.com/comp/K287XW/sale-fashion-shopping-background-or-frame-clothes-and-accessories-K287XW.jpg");
-    background-repeat:no-repeat;
-    background-size: 100%;
-    background-position-x: center ;
-    background-position-y: center ;
-
-} 
-.nav-link, .nav-item, .navbar-brand , .btn{
-    transition: all 1s;
+body {
+  background-image: url("https://c7.alamy.com/comp/K287XW/sale-fashion-shopping-background-or-frame-clothes-and-accessories-K287XW.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-x: center;
+  background-position-y: center;
 }
-.nav-link:hover, .nav-item:hover, .navbar-brand:hover{
-    scale: 1.3;
-   color: red;
+.nav-link,
+.nav-item,
+.navbar-brand,
+.btn {
+  transition: all 1s;
+}
+.nav-link:hover,
+.nav-item:hover,
+.navbar-brand:hover {
+  scale: 1.3;
+  color: red;
 }
 
-.btn:hover{
-    scale: 1.3;
-} 
-
-.fa-tshirt{
-    transition: all 2s;
-    animation: animacion;
+.btn:hover {
+  scale: 1.3;
 }
+
+.fa-tshirt {
+  transition: all 2s;
+  animation: animacion;
+}
+
+
 @keyframes animation {
-    
-  0%   { left:0px;}
-  25%  {left:200px; }
-  50%  { left:400px;}
-  75%  { left:200px;}
-  100% { left:0px;}
-};
+  0% {
+    left: 0px;
+  }
+  25% {
+    left: 200px;
+  }
+  50% {
+    left: 400px;
+  }
+  75% {
+    left: 200px;
+  }
+  100% {
+    left: 0px;
+  }
+}

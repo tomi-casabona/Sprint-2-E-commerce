@@ -62,5 +62,5 @@ function validate() {
     : "block";
   errorPhone.style.display = phoneRegex.test(fPhone.value) ? "none" : "block";
 }
-  
+
 
