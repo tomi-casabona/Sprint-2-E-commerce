@@ -49,7 +49,8 @@ This is a e-commerce website
 
 ## Demo
 
-![Video](/Sprint-2-E-commerce/video/Demo%20E-commerce.mp4)
+![Video](/video/Demo%20E-commerce.mp4)
+
 
 
 
