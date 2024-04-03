@@ -49,9 +49,10 @@ This is a e-commerce website
 
 ## Demo
 
-![Video](https://github.com/tomi-casabona/Sprint-2-E-commerce/blob/main/video/Demo%20E-commerce.mp4)
-
-
+<video width="320" height="240" controls>
+  <source src="/Sprint-2-E-commerce/video/Demo E-commerce.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
 
