@@ -51,8 +51,8 @@ This is a e-commerce website
 
 
 
+https://github.com/tomi-casabona/Sprint-2-E-commerce/assets/72135623/fb7a66b8-479e-41df-b922-78b9012efa3c
 
-https://github.com/tomi-casabona/Sprint-2-E-commerce/assets/72135623/3e8d066d-6b61-4901-96fb-3e810b816f80
 
 
 
