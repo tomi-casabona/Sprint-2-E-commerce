@@ -49,8 +49,7 @@ This is a e-commerce website
 
 ## Demo
 
-https://github.com/tomi-casabona/Sprint-2-E-commerce/blob/main/video/Demo%20E-commerce.mp4
-
+![Video](/Sprint-2-E-commerce/video/Demo%20E-commerce.mp4)
 
 
 
